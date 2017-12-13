@@ -23,9 +23,7 @@ digitalFont = pygame.font.Font("digital.ttf", 350) # font argument needs full pa
 score = digitalFont.render("999", 1, GREEN)
 balls = digitalFont.render("9", 1, RED)
 
-width = score.get_width()
-height = score.get_height()
-centeredTopBottom = windowSurface.get_height() // 2 - height // 2
+centeredTopBottom = windowSurface.get_height() // 2 - score.get_height() // 2
 
 # (x,y)
 windowSurface.blit(score, (20, centeredTopBottom))
