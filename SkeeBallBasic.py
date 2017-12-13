@@ -20,16 +20,17 @@ windowSurface.fill(BLACK)
 # draw stuffs to screen
 digitalFont = pygame.font.Font("digital.ttf", 350) # font argument needs full path if not in this folder
 
-ones = digitalFont.render("999", 1, GREEN)
+score = digitalFont.render("999", 1, GREEN)
 balls = digitalFont.render("9", 1, RED)
 
-width = ones.get_width()
-height = ones.get_height()
+width = score.get_width()
+height = score.get_height()
 centeredTopBottom = windowSurface.get_height() // 2 - height // 2
 
 # (x,y)
-windowSurface.blit(ones, (20, centeredTopBottom))
-windowSurface.blit(balls, (20 + 3 * (width // 3) + 10 + 10 + 40, centeredTopBottom))
+windowSurface.blit(score, (20, centeredTopBottom))
+# windowSurface.blit(balls, (20 + 3 * (width // 3) + 10 + 10 + 40, centeredTopBottom))
+windowSurface.blit(balls, (windowSurface.get_width() - balls.get_width() - 20, centeredTopBottom))
 
 # draw the window onto the screen
 pygame.display.update()
