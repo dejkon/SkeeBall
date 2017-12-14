@@ -22,9 +22,22 @@ def updateGame(keyScore):
     if (BALLS < 9):
         BALLS += 1
         SCORE += keyScore
+        pygame.display.update()
     elif (BALLS == 9):
+        for x in range(3):
+            pygame.time.delay(500)
+            windowSurface.fill(BLACK)
+            pygame.display.update()
+            pygame.time.delay(500)
+            windowSurface.blit(score, (20, centeredTopBottom))
+            windowSurface.blit(balls, (windowSurface.get_width() \
+                                - balls.get_width() - 20, centeredTopBottom))
+            pygame.display.update()
+
+        pygame.time.delay(500)
         BALLS = 0
         SCORE = 000
+        pygame.display.update()
 #-------------------------------------------------------------------------------
 
 # run the game loop ------------------------------------------------------------
