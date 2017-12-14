@@ -1,5 +1,15 @@
+# Notes ------------------------------------------------------------------------
+# - continues to accumulate points during game finish animations
+# - needs two player capability
+# - GPIO library added and basic code to take input sensors
+# -
+# -
+#-------------------------------------------------------------------------------
+
+# import libraries -------------------------------------------------------------
 import pygame, sys
 from pygame.locals import *
+#-------------------------------------------------------------------------------
 
 # set up pygame and window -----------------------------------------------------
 pygame.init()
@@ -17,8 +27,11 @@ SCORE = 000
 BALLS = 0
 
 # function defs
-def wait():
-    pygame.time.delay(500)
+def wait(int = 0):
+    if (int == 1):
+        pygame.time.delay(500)
+    else:
+        pygame.time.delay(200)
 
 def updateGame(keyScore):
     global BALLS, SCORE
@@ -29,23 +42,36 @@ def updateGame(keyScore):
         # pygame.display.update()
     elif (BALLS == 9):
         for x in range(3):
-            wait()
+            wait(1)
             windowSurface.fill(BLACK)
             pygame.display.update()
-            wait()
+
+            wait(1)
             windowSurface.blit(score, (20, centeredTopBottom))
             windowSurface.blit(balls, (windowSurface.get_width() \
                                 - balls.get_width() - 20, centeredTopBottom))
             pygame.display.update()
 
-        # pygame.time.delay(500)
+        for i in range(3):
+            numberAnimation = ["aaa", "bbb", "ccc", "ddd", "eee", "fff"]
+            digitalFont = pygame.font.Font("digital.ttf", 350)
+
+            for object in numberAnimation:
+                wait()
+                windowSurface.fill(BLACK)
+                scene = digitalFont.render(object, 1, GREEN)
+                windowSurface.blit(scene, (20, centeredTopBottom))
+                windowSurface.blit(balls, (windowSurface.get_width() \
+                                - balls.get_width() - 20, centeredTopBottom))
+                pygame.display.update()
+
         wait()
         BALLS = 0
         SCORE = 000
-        # pygame.display.update()
+        pygame.display.update()
 #-------------------------------------------------------------------------------
 
-# game loop ------------------------------------------------------------
+# game loop --------------------------------------------------------------------
 while True:
 
     for event in pygame.event.get():
@@ -54,7 +80,6 @@ while True:
             sys.exit()
 
         elif event.type == KEYDOWN:
-
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
@@ -77,6 +102,7 @@ while True:
     digitalFont = pygame.font.Font("digital.ttf", 350)
     score = digitalFont.render(str(SCORE).zfill(3), 1, GREEN)
     balls = digitalFont.render(str(BALLS), 1, RED)
+    # new = digitalFont.render("aaa", 1, GREEN)
     centeredTopBottom = windowSurface.get_height() // 2 \
                         - score.get_height() // 2
 
