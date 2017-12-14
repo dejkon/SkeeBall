@@ -17,30 +17,35 @@ SCORE = 000
 BALLS = 0
 
 # function defs
+def wait():
+    pygame.time.delay(500)
+
 def updateGame(keyScore):
     global BALLS, SCORE
+
     if (BALLS < 9):
         BALLS += 1
         SCORE += keyScore
-        pygame.display.update()
+        # pygame.display.update()
     elif (BALLS == 9):
         for x in range(3):
-            pygame.time.delay(500)
+            wait()
             windowSurface.fill(BLACK)
             pygame.display.update()
-            pygame.time.delay(500)
+            wait()
             windowSurface.blit(score, (20, centeredTopBottom))
             windowSurface.blit(balls, (windowSurface.get_width() \
                                 - balls.get_width() - 20, centeredTopBottom))
             pygame.display.update()
 
-        pygame.time.delay(500)
+        # pygame.time.delay(500)
+        wait()
         BALLS = 0
         SCORE = 000
-        pygame.display.update()
+        # pygame.display.update()
 #-------------------------------------------------------------------------------
 
-# run the game loop ------------------------------------------------------------
+# game loop ------------------------------------------------------------
 while True:
 
     for event in pygame.event.get():
@@ -53,25 +58,18 @@ while True:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-
             if event.key == pygame.K_1:
                 updateGame(10)
-
             if event.key == pygame.K_2:
                 updateGame(20)
-
             if event.key == pygame.K_3:
                 updateGame(30)
-
             if event.key == pygame.K_4:
                 updateGame(40)
-
             if event.key == pygame.K_5:
                 updateGame(50)
-
             if event.key == pygame.K_9:
                 updateGame(100)
-
             if event.key == pygame.K_0:
                 updateGame(0)
 
