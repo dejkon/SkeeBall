@@ -73,13 +73,15 @@ def updateGame(keyScore):
 
 # game loop --------------------------------------------------------------------
 while True:
-
+    global BALLS
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
 
         elif event.type == KEYDOWN:
+
+            if (BALLS )
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
