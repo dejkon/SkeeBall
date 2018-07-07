@@ -7,7 +7,8 @@
 #-------------------------------------------------------------------------------
 
 # import libraries -------------------------------------------------------------
-import pygame, sys
+import pygame
+import sys
 from pygame.locals import *
 #-------------------------------------------------------------------------------
 
@@ -26,7 +27,9 @@ RED   = (255, 0, 0)
 SCORE = 000
 BALLS = 0
 
-# function defs
+# function defs-----------------------------------------------------------------
+
+# delay times
 def wait(int = 0):
     if (int == 1):
         pygame.time.delay(500)
@@ -36,6 +39,7 @@ def wait(int = 0):
 def updateGame(keyScore):
     global BALLS, SCORE
 
+    # score updat and game end animations
     if (BALLS < 9):
         BALLS += 1
         SCORE += keyScore
@@ -73,38 +77,46 @@ def updateGame(keyScore):
 
 # game loop --------------------------------------------------------------------
 while True:
-    global BALLS
+
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == pygame.QUIT:
+            print('Quit')
             pygame.quit()
             sys.exit()
 
-        elif event.type == KEYDOWN:
+        elif event.type == pygame.KEYDOWN:
 
-            if (BALLS )
-            if event.key == K_ESCAPE:
-                pygame.quit()
-                sys.exit()
-            if event.key == pygame.K_1:
-                updateGame(10)
-            if event.key == pygame.K_2:
-                updateGame(20)
-            if event.key == pygame.K_3:
-                updateGame(30)
-            if event.key == pygame.K_4:
-                updateGame(40)
-            if event.key == pygame.K_5:
-                updateGame(50)
-            if event.key == pygame.K_9:
-                updateGame(100)
-            if event.key == pygame.K_0:
-                updateGame(0)
+            if ( BALLS <= 9):
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+                if event.key == pygame.K_1:
+                    print('One Key Pressed')
+                    updateGame(10)
+                if event.key == pygame.K_2:
+                    print('Two Key Pressed')
+                    updateGame(20)
+                if event.key == pygame.K_3:
+                    print('Three Key Pressed')
+                    updateGame(30)
+                if event.key == pygame.K_4:
+                    print('Four Key Pressed')
+                    updateGame(40)
+                if event.key == pygame.K_5:
+                    print('Five Key Pressed')
+                    updateGame(50)
+                if event.key == pygame.K_9:
+                    print('Nine Key Pressed')
+                    updateGame(100)
+                if event.key == pygame.K_0:
+                    print('Zero Key Pressed')
+                    updateGame(0)
 
     # definitions # font argument needs full path if not in this folder
     digitalFont = pygame.font.Font("digital.ttf", 350)
     score = digitalFont.render(str(SCORE).zfill(3), 1, GREEN)
     balls = digitalFont.render(str(BALLS), 1, RED)
-    # new = digitalFont.render("aaa", 1, GREEN)
+
     centeredTopBottom = windowSurface.get_height() // 2 \
                         - score.get_height() // 2
 
